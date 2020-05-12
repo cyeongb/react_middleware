@@ -1,6 +1,11 @@
 import React from "react";
 
 const sample = ({ loadingPost, loadingUsers, post, users }) => {
+  console.log("components _ const sample()");
+  console.log("sample() _ loading post>>", loadingPost);
+  console.log("sample() _ loading users>>", loadingUsers);
+  console.log("sample() _ post>>", post);
+  console.log("sample() _ users>>", users);
   return (
     <div>
       <section>
