@@ -20,9 +20,18 @@ const SampleContainer = ({
   console.log(" SampleContainer() _ users>>", users);
   // 클래스 형태의 컴포넌트였다면 componentDidMount
   useEffect(() => {
-    // useEffect 함수로 getPost 와 getUsers 함수가 렌더링되면 각(4번째,1번째) 값을 부른다.
-    getPost(4);
-    getUsers(1);
+    const fn = async () => {
+      //useEffect 에 파라미터로 넣는 함수는  async로 할 수 없기 때문에
+      // 내부에서 async함수를 선언하고 호출한다.
+      try {
+        // useEffect 함수로 getPost 와 getUsers 함수가 렌더링되면 각(4번째,1번째) 값을 부른다.
+        await getPost(4);
+        await getUsers(1);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fn();
   }, [getPost, getUsers]);
 
   return (
@@ -38,11 +47,11 @@ const SampleContainer = ({
 
 export default connect(
   //connect => 특정 함수(SampleContainer)를 props로 받아와서 사용할 수 있는 패턴
-  ({ sample }) => ({
+  ({ sample, loading }) => ({
     post: sample.post, //action.payload
     users: sample.users, //action.payload
-    loadingPost: sample.loading.GET_POST,
-    loadingUsers: sample.loading.GET_USERS,
+    loadingPost: loading["sample/GET_POST"],
+    loadingUsers: loading["sample/GET_USERS"],
   }),
   {
     getPost,
