@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import * as api from ".../lib/api";
+import * as api from "../lib/api";
 
 // api.js 에서 데이터를 받아와서 상태를 관리할 sample 이라는 "리듀서"
 

@@ -7,5 +7,3 @@ export const getPost = (id) =>
 
 export const getUsers = (id) =>
   axios.get(`https://jsonplaceholder.typicode.com/users`);
-
-  
